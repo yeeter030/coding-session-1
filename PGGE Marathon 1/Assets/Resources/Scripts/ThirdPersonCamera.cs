@@ -15,25 +15,25 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField]
     public float Damping = 1.0f;
 
-    public enum CameraType
+    /*public enum CameraType
     {
         TRACK,
         FOLLOW_POS,
         FOLLOW_POS_ROT,
-    }
-    [SerializeField]
-    CameraType mCameraType = CameraType.TRACK;
+    }*/
+    //[SerializeField]
+    //CameraType mCameraType = CameraType.FOLLOW_POS_ROT;
 
-    Dictionary<CameraType, TPCBase> myCameras = new Dictionary<CameraType, TPCBase>();
+    //Dictionary<CameraType, TPCBase> myCameras = new Dictionary<CameraType, TPCBase>();
     // Start is called before the first frame update
     void Start()
     {
-        myCameras.Add(CameraType.TRACK, new TPCTrack(transform, mPlayerTransform));
-        myCameras.Add(CameraType.FOLLOW_POS, new TPCFollowTrackPosition(transform, mPlayerTransform));
-        myCameras.Add(CameraType.FOLLOW_POS_ROT, new TPCFollowTrackPositionAndRotation(transform, mPlayerTransform));
+        //myCameras.Add(CameraType.TRACK, new TPCTrack(transform, mPlayerTransform));
+        //myCameras.Add(CameraType.FOLLOW_POS, new TPCFollowTrackPosition(transform, mPlayerTransform));
+        //myCameras.Add(CameraType.FOLLOW_POS_ROT, new TPCFollowTrackPositionAndRotation(transform, mPlayerTransform));
         //myCamera = new TPCTrack(transform, mPlayerTransform);
         //myCamera = new TPCFollowTrackPosition(transform, mPlayerTransform);
-        //myCamera = new TPCFollowTrackPositionAndRotation(transform, mPlayerTransform);
+        myCamera = new TPCFollowTrackPositionAndRotation(transform, mPlayerTransform);
 
         GameConstants.Damping = Damping;
         GameConstants.CameraPositionOffset = CameraPositionOffset;
@@ -44,7 +44,7 @@ public class ThirdPersonCamera : MonoBehaviour
     // Update is called once per frame
     private void LateUpdate()
     {
-        myCameras[mCameraType].Frame();
-        //myCamera.Frame();
+        //myCameras[mCameraType].Frame();
+        myCamera.Frame();
     }
 }
